@@ -1,1 +1,22 @@
-<h2>Index</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploads - Home</title>
+</head>
+<body>
+    <div>
+        <a style="float: right;" href="{% url 'logout' %}">Logout</a>
+        <small style="float: right; margin-top: 3px; margin-right: 3px;">({{request.user}})</small>
+        <a href="#">Upload File</a>
+    </div>
+    <hr>
+    {% if messages %}
+        {% for message in messages %}
+            <small><strong style="color: green; margin-bottom: 5px;">{{message}}</strong></small>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
