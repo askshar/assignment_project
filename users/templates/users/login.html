@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <small><strong style="color: red; margin-bottom: 5px;">{{message}}</strong></small>
+        {% endfor %}
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <label for="">Username</label>
+        <input type="text" name="username" placeholder="Enter Username" required><br>
+
+        <label style="margin-top: 10px;" for="">Password</label>
+        <input style="margin-top: 10px; margin-left: 4px;" type="password" name="password" placeholder="Enter Password" required><br>
+
+        <input style="margin-top: 10px;" type="submit" value="Login">
+    </form>
+    
+    <small>Don't have an account? <a href="{% url 'signup' %}">Signup</a></small>
+</body>
+</html>

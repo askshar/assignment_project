@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegisterForm
 
 
@@ -18,9 +19,24 @@ def user_signup(request):
 
 
 def user_login(request):
-    pass
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Logged In successfully.')
+            return redirect('register')
+        else:
+            messages.success(request, 'Invalid credentials.')
+            return redirect('login')
+    return render(request, 'users/login.html')
 
 
 
 def user_logout(request):
-    pass
+    logout(request)
+    messages.success(request, 'Logged out.')
+    return redirect('login')
