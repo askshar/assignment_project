@@ -10,22 +10,15 @@
     <div>
         <a style="float: right;" href="{% url 'logout' %}">Logout</a>
         <small style="float: right; margin-top: 3px; margin-right: 3px;">({{request.user}})</small>
+        <a href="{% url 'index' %}">Home</a>
         <a href="{% url 'upload_file' %}">Upload File</a>
     </div>
     <hr>
-    {% if messages %}
-        {% for message in messages %}
-            <small><strong style="color: green; margin-bottom: 5px;">{{message}}</strong></small>
-        {% endfor %}
-    {% endif %}
-    <br>
-    {% if user_files %}
-        <h2>All Files ({{file_count}})</h2>
-        {% for file in user_files %}
-            <h3><a href="{% url 'file_detail' file.id %}">{{file}}</a></h3>
-        {% endfor %}
-    {% else %}
-        <p>User did not upload any file yet.</p>
-    {% endif %}
+    <h2>{{filename}}</h2>
+    
+    {% comment %} <p>{{text}}</p> {% endcomment %}
+    <p>{{uploaded_at}}</p>
+
+    <a href="/docs/{{file}}">File link (Click to open)</a>
 </body>
 </html>
